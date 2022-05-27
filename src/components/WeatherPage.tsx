@@ -1,27 +1,18 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import Loader from './Loader';
 import { loadingCityAction } from '../store/actions/actions';
-import { IState } from '../store/initialState'
-import styles from './WeatherPage.module.css';
-
-const store = (state: IState) => state.dayTemp;
+import { getDayTempState } from '../store/selectors/tagsSelectors';
+import styles from './weatherPage.module.css';
 
 const WeatherPage: React.FC = () => {
-  const weatherDay = useSelector(store)
+  const weatherDay = useSelector(getDayTempState)
   const dispatch = useDispatch();
   const params = useParams()
   const { cityId } = params;
-  const temperature = Math.round(weatherDay.main.temp - 273);
-  const request: any = () => {
-    axios.get('https://api.openweathermap.org/data/2.5/forecast?q=Penza&appid=f595fef9007f65f8157c0faa1ce3c95e')
-      .then(resp => {
-        console.log(resp.data.list)
-      })
-  }
+
   useEffect(() => {
-    request();
     if (cityId) {
       dispatch(loadingCityAction(cityId))
     }
@@ -39,15 +30,10 @@ const WeatherPage: React.FC = () => {
                 <img src={ `https://openweathermap.org/img/wn/${weatherDay.weather[0].icon}@2x.png` } alt="weather_img" />
               ) : null}
               {weatherDay.loading ? (
-                <div className={ styles.loader }>
-                  <div />
-                  <div />
-                  <div />
-                  <div />
-                </div>
+                <Loader />
               ) : (
                 <p style={{ fontSize: '47px' }}>
-                  {temperature}
+                  {weatherDay.main.temp}
                   &#176;
                 </p>
               )}
@@ -56,12 +42,7 @@ const WeatherPage: React.FC = () => {
           <div className={ styles.weather_flex }>
             <p>Pressure:</p>
             {weatherDay.loading ? (
-              <div className={ styles.loader }>
-                <div />
-                <div />
-                <div />
-                <div />
-              </div>
+              <Loader />
             ) : (
               <p>
                 {weatherDay.main.pressure}
@@ -73,12 +54,7 @@ const WeatherPage: React.FC = () => {
           <div className={ styles.weather_flex }>
             <p>Humidity:</p>
             {weatherDay.loading ? (
-              <div className={ styles.loader }>
-                <div />
-                <div />
-                <div />
-                <div />
-              </div>
+              <Loader />
             ) : (
               <p>
                 {weatherDay.main.humidity}

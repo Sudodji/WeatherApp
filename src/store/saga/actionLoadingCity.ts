@@ -15,7 +15,7 @@ import {
 function* axiosWeatherAsync(action:Props) {
   try {
     // eslint-disable-next-line max-len
-    const { data } = yield call(() => axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${action.payload}&appid=f595fef9007f65f8157c0faa1ce3c95e`))
+    const { data } = yield call(() => axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${action.payload}&units=metric&appid=f595fef9007f65f8157c0faa1ce3c95e`))
     yield put(saveTempAction(data))
   } catch (error) {
     yield put(errorTempAction())

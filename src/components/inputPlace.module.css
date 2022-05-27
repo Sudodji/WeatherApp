@@ -1,3 +1,13 @@
+ul a {
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+
+ul a:hover {
+  background-color: beige;
+}
+
 .input_wrapper {
   display: flex;
   justify-content: center;
@@ -5,8 +15,8 @@
   height: 700px;
 }
 
-.input_wrapper div {
-  width: 500px;
+.input_wrapper div:first-child {
+  width: 533px;
   height: 180px;
   border-radius: 10px;
   text-align: center;
@@ -19,14 +29,19 @@
   border: none;
 }
 
+.search_field:focus-visible {
+  outline: none;
+}
+
 .search_button {
-  width: 100px;
+  width: 115px;
   height: 30px;
   border-radius: 10px;
   background-color: gainsboro;
   border: none;
   padding: 0;
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .search_link {
@@ -44,18 +59,14 @@
   border-radius: 0 0 10px 10px;
 }
 
-.search_field:focus-visible {
-  outline: none;
-}
-
-ul a {
-  display: block;
-  text-decoration: none;
-  color: black;
-}
-
-ul a:hover {
-  background-color: beige;
+.search_geoposition {
+  width: 160px;
+  height: 87px;
+  border-radius: 10px;
+  text-align: center;
+  position: fixed;
+  top: 40px;
+  right: 10px;
 }
 
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {

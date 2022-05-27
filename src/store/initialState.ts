@@ -1,5 +1,7 @@
 export interface IState {
   dayTemp: IDayTemp,
+  autoComplete: IAutoComplete,
+  geoPosition: IGeoPosition,
 }
 export interface IDayTemp extends ICommonReducer {
   main: {
@@ -10,6 +12,20 @@ export interface IDayTemp extends ICommonReducer {
   weather: [{
     icon: string,
   }]
+}
+export interface IAutoComplete extends ICommonReducer {
+  data: {
+    _embedded: {
+      ['city:search-results']: [{
+        matching_full_name: string,
+      }],
+    }
+  }
+}
+export interface IGeoPosition extends ICommonReducer {
+  name:{
+  name: string,
+  }
 }
 interface ICommonReducer{
   loading: boolean,
