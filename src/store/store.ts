@@ -7,9 +7,12 @@ import dayWeatherReducer from './reducers/dayWeatherReducer';
 import autoCompleteReducer from './reducers/autoCompleteReducer';
 import geoPositionReducer from './reducers/geoPositionReducer';
 import { watchGeoPosition } from './saga/actionLoadingGeoPosition';
+import weekWeatherReducer from './reducers/weekWeatherReducer';
+import { watchAxiosForecast } from './saga/actionLoadingForecast';
 
 const rootReducer = combineReducers({
   dayTemp: dayWeatherReducer,
+  weekTemp: weekWeatherReducer,
   autoComplete: autoCompleteReducer,
   geoPosition: geoPositionReducer,
 });
@@ -19,5 +22,6 @@ const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaM
 sagaMiddleware.run(watchAxiosWeather);
 sagaMiddleware.run(watchAxiosAutoComplete);
 sagaMiddleware.run(watchGeoPosition);
+sagaMiddleware.run(watchAxiosForecast);
 
 export default store;

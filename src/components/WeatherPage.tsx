@@ -1,18 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Loader from './Loader';
-import { loadingCityAction } from '../store/actions/actions';
+import WeekTable from './WeekTable';
+import { loadingCityAction, loadingForecastAction } from '../store/actions/actions';
 import { getDayTempState } from '../store/selectors/tagsSelectors';
 import styles from './weatherPage.module.css';
 
 const WeatherPage: React.FC = () => {
+  const [ isOpen, setIsOpen ] = useState<boolean>(false)
   const weatherDay = useSelector(getDayTempState)
   const dispatch = useDispatch();
   const params = useParams()
   const { cityId } = params;
+  const handleClickButton = () => {
+    setIsOpen(!isOpen);
+    if (cityId) {
+      dispatch(loadingForecastAction(cityId))
+    }
+  }
 
   useEffect(() => {
+    // eslint-disable-next-line max-len
     if (cityId) {
       dispatch(loadingCityAction(cityId))
     }
@@ -62,7 +71,10 @@ const WeatherPage: React.FC = () => {
               </p>
             )}
           </div>
-          <button className={ styles.weather_button }>weekTemp(click)</button>
+          <button className={ styles.weather_button } onClick={ handleClickButton }>weekTemp(click)</button>
+          {isOpen ? (
+            <WeekTable />
+          ) : null}
         </div>
       ) : <div><h1 style={{ lineHeight: '8' }}>City not found</h1></div>}
 

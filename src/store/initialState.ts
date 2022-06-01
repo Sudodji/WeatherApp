@@ -1,5 +1,6 @@
 export interface IState {
   dayTemp: IDayTemp,
+  weekTemp: IWeekTemp,
   autoComplete: IAutoComplete,
   geoPosition: IGeoPosition,
 }
@@ -12,6 +13,11 @@ export interface IDayTemp extends ICommonReducer {
   weather: [{
     icon: string,
   }]
+}
+export interface IWeekTemp extends ICommonReducer {
+  main: {
+    list: [],
+  }
 }
 export interface IAutoComplete extends ICommonReducer {
   data: {

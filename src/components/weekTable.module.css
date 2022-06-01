@@ -1,0 +1,14 @@
+td,
+th {
+  padding: 10px;
+  text-align: center;
+  border: 2px solid papayawhip;
+  border-bottom: 0;
+  border-top: 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: -webkit-fill-available;
+  margin-top: 10px;
+}

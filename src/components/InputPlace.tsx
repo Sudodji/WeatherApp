@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { getAutoCompleteState, getGeoPositionState } from '../store/selectors/tagsSelectors';
 import { loadingAutoCompleteAction, loadingGeoAction } from '../store/actions/actions';
 import styles from './inputPlace.module.css';
-import debounce from '../helper';
+import { debounce } from '../helper';
 
 const InputPlace: React.FC = () => {
   const autoComplete = useSelector(getAutoCompleteState)

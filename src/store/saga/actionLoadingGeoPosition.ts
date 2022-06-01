@@ -9,7 +9,6 @@ import {
 function* GeoPosition() {
   try {
     const { data } = yield call(() => axios.get('https://www.travelpayouts.com/whereami?locale=eng&ip'))
-    yield console.log(data)
     yield put(saveCoordsAction(data))
   } catch (error) {
     yield put(errorCoordsAction())

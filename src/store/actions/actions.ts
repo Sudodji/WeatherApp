@@ -2,6 +2,9 @@ export enum EActionsTypes {
   LOADING_CITY = 'LOADING_CITY',
   SAVE_TEMP = 'SAVE_TEMP',
   ERROR_TEMP = 'ERROR_TEMP',
+  LOADING_FORECAST = 'LOADING_FORECAST',
+  SAVE_FORECAST = 'SAVE_FORECAST',
+  ERROR_FORECAST = 'ERROR_FORECAST',
   LOADING_AUTO_COMPLETE = 'LOADING_AUTO_COMPLETE',
   SAVE_AUTO_RESULTS = 'SAVE_AUTO_RESULTS',
   ERROR_AUTO_RESULTS = 'ERROR_AUTO_RESULTS',
@@ -18,6 +21,11 @@ type dataDay = {
   weather: [{
     icon: string,
   }],
+}
+type dataWeek = {
+  main: {
+    list: [],
+  }
 }
 type dataAutoComplete = {
   data: {
@@ -45,6 +53,20 @@ export const saveTempAction = (data: dataDay) => ({
 
 export const errorTempAction = () => ({
   type: EActionsTypes.ERROR_TEMP,
+})
+
+export const loadingForecastAction = (payload: string) => ({
+  type: EActionsTypes.LOADING_FORECAST,
+  payload,
+})
+
+export const saveForecastAction = (data: dataWeek[]) => ({
+  type: EActionsTypes.SAVE_FORECAST,
+  payload: data,
+})
+
+export const errorForecastAction = () => ({
+  type: EActionsTypes.ERROR_FORECAST,
 })
 
 export const loadingAutoCompleteAction = (payload: string) => ({
