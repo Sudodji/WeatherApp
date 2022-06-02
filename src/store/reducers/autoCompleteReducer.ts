@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { EActionsTypes } from '../actions/actions';
+import { EActionsTypes } from '../actions/actionAutoComplete';
 import { IAutoComplete } from '../initialState';
 
 const initialState: IAutoComplete = {

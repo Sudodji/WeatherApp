@@ -34,6 +34,26 @@
   cursor: pointer;
 }
 
+.weather_city_name {
+  margin: 10px;
+}
+
+.temperature {
+  font-size: 18px;
+}
+
+.temperature_block {
+  display: flex;
+}
+
+.temperature_celsius {
+  font-size: 47px;
+}
+
+.error_header {
+  line-height: 8;
+}
+
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
   .weather_wrapper {
     -webkit-backdrop-filter: blur(10px);

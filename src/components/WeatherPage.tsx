@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Loader from './Loader';
 import WeekTable from './WeekTable';
-import { loadingCityAction, loadingForecastAction } from '../store/actions/actions';
+import { loadingForecastAction } from '../store/actions/actionWeekWeather';
+import { loadingCityAction } from '../store/actions/actionDayWeather';
 import { getDayTempState } from '../store/selectors/tagsSelectors';
 import styles from './weatherPage.module.css';
 
@@ -21,63 +22,59 @@ const WeatherPage: React.FC = () => {
   }
 
   useEffect(() => {
-    // eslint-disable-next-line max-len
     if (cityId) {
       dispatch(loadingCityAction(cityId))
     }
   }, [ cityId ])
   return (
     <div className={ styles.weather }>
+
       {!weatherDay.error ? (
         <div className={ styles.weather_wrapper }>
-          <h1 style={{ margin: '10px' }}>{cityId}</h1>
-          <div className={ styles.weather_flex }>
-            <p style={{ fontSize: '18px' }}>Temperature:</p>
-            <div style={{ display: 'flex' }}>
-              {weatherDay.weather[0].icon ? (
-                // eslint-disable-next-line max-len
-                <img src={ `https://openweathermap.org/img/wn/${weatherDay.weather[0].icon}@2x.png` } alt="weather_img" />
-              ) : null}
-              {weatherDay.loading ? (
-                <Loader />
-              ) : (
-                <p style={{ fontSize: '47px' }}>
-                  {weatherDay.main.temp}
-                  &#176;
-                </p>
-              )}
-            </div>
-          </div>
-          <div className={ styles.weather_flex }>
-            <p>Pressure:</p>
-            {weatherDay.loading ? (
-              <Loader />
-            ) : (
-              <p>
-                {weatherDay.main.pressure}
-                {' '}
-                mmHg
-              </p>
+          {weatherDay.loading ? (
+            <Loader />
+          )
+            : (
+              <div>
+                <h1 className={ styles.weather_city_name }>{cityId}</h1>
+                <div className={ styles.weather_flex }>
+                  <p className={ styles.temperature }>Temperature:</p>
+                  <div className={ styles.temperature_block }>
+                    {weatherDay.weather[0].icon && (
+                    <img
+                      src={ `https://openweathermap.org/img/wn/${weatherDay.weather[0].icon}@2x.png` }
+                      alt="weather_img"
+                    />
+                    )}
+                    <p className={ styles.temperature_celsius }>
+                      {weatherDay.main.temp}
+                      &#176;
+                    </p>
+                  </div>
+                </div>
+                <div className={ styles.weather_flex }>
+                  <p>Pressure:</p>
+                  <p>
+                    {weatherDay.main.pressure}
+                    {' '}
+                    mmHg
+                  </p>
+                </div>
+                <div className={ styles.weather_flex }>
+                  <p>Humidity:</p>
+                  <p>
+                    {weatherDay.main.humidity}
+                    %
+                  </p>
+                </div>
+                <button className={ styles.weather_button } onClick={ handleClickButton }>weekTemp(click)</button>
+                {isOpen ? (
+                  <WeekTable />
+                ) : null}
+              </div>
             )}
-          </div>
-          <div className={ styles.weather_flex }>
-            <p>Humidity:</p>
-            {weatherDay.loading ? (
-              <Loader />
-            ) : (
-              <p>
-                {weatherDay.main.humidity}
-                %
-              </p>
-            )}
-          </div>
-          <button className={ styles.weather_button } onClick={ handleClickButton }>weekTemp(click)</button>
-          {isOpen ? (
-            <WeekTable />
-          ) : null}
         </div>
-      ) : <div><h1 style={{ lineHeight: '8' }}>City not found</h1></div>}
-
+      ) : <div><h1 className={ styles.error_header }>City not found</h1></div>}
     </div>
   )
 };

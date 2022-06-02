@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { EActionsTypes } from '../actions/actions';
+import { EActionsTypes } from '../actions/actionDayWeather';
 import { IDayTemp } from '../initialState';
 
 const initialState:IDayTemp = {

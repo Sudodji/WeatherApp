@@ -4,7 +4,7 @@ import {
   EActionsTypes,
   saveForecastAction,
   errorForecastAction,
-} from '../actions/actions';
+} from '../actions/actionWeekWeather';
 
 type Props = {
   type: EActionsTypes.LOADING_FORECAST,

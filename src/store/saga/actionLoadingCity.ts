@@ -5,7 +5,7 @@ import {
   EActionsTypes,
   saveTempAction,
   errorTempAction,
-} from '../actions/actions';
+} from '../actions/actionDayWeather';
 
  type Props = {
     type: EActionsTypes.LOADING_CITY,

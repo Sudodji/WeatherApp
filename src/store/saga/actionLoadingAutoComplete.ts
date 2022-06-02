@@ -4,7 +4,7 @@ import {
   EActionsTypes,
   saveAutoResultsAction,
   errorAutoResultsAction,
-} from '../actions/actions';
+} from '../actions/actionAutoComplete';
 
 type Props = {
   type: EActionsTypes.LOADING_AUTO_COMPLETE,

@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { EActionsTypes } from '../actions/actions';
+import { EActionsTypes } from '../actions/actionWeekWeather';
 import { IWeekTemp } from '../initialState';
 
 const initialState:IWeekTemp = {

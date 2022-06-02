@@ -14,72 +14,33 @@ const WeekTable: React.FC = () => {
 
   return (
     <div>
-      {weatherWeek.length ? (
+      {weatherWeek.length && (
         <table className={ styles.table }>
           <tbody>
             <tr>
-              <th>{weatherWeek[0].dt}</th>
-              <th>{weatherWeek[1].dt}</th>
-              <th>{weatherWeek[2].dt}</th>
-              <th>{weatherWeek[3].dt}</th>
-              <th>{weatherWeek[4].dt}</th>
-              <th>{weatherWeek[5].dt}</th>
+              {weatherWeek.map(date => (
+                <th>{date.dt}</th>
+              )) }
             </tr>
             <tr>
-              <td style={{ backgroundColor: color(weatherWeek[0].main.temp_max) }}>
-                {weatherWeek[0].main.temp_max}
-                &#176;
-              </td>
-              <td style={{ backgroundColor: color(weatherWeek[1].main.temp_max) }}>
-                {weatherWeek[1].main.temp_max}
-                &#176;
-              </td>
-              <td style={{ backgroundColor: color(weatherWeek[2].main.temp_max) }}>
-                {weatherWeek[2].main.temp_max}
-                &#176;
-              </td>
-              <td style={{ backgroundColor: color(weatherWeek[3].main.temp_max) }}>
-                {weatherWeek[3].main.temp_max}
-                &#176;
-              </td>
-              <td style={{ backgroundColor: color(weatherWeek[4].main.temp_max) }}>
-                {weatherWeek[4].main.temp_max}
-                &#176;
-              </td>
-              <td style={{ backgroundColor: color(weatherWeek[5].main.temp_max) }}>
-                {weatherWeek[5].main.temp_max}
-                &#176;
-              </td>
+              {weatherWeek.map(temp => (
+                <td style={{ backgroundColor: color(temp.main.temp_max) }}>
+                  {temp.main.temp_max}
+                  &#176;
+                </td>
+              ))}
             </tr>
             <tr>
-              <td style={{ backgroundColor: color(weatherWeek[0].main.temp_min) }}>
-                {weatherWeek[0].main.temp_min}
-                &#176;
-              </td>
-              <td style={{ backgroundColor: color(weatherWeek[1].main.temp_min) }}>
-                {weatherWeek[1].main.temp_min}
-                &#176;
-              </td>
-              <td style={{ backgroundColor: color(weatherWeek[2].main.temp_min) }}>
-                {weatherWeek[2].main.temp_min}
-                &#176;
-              </td>
-              <td style={{ backgroundColor: color(weatherWeek[3].main.temp_min) }}>
-                {weatherWeek[3].main.temp_min}
-                &#176;
-              </td>
-              <td style={{ backgroundColor: color(weatherWeek[4].main.temp_min) }}>
-                {weatherWeek[4].main.temp_min}
-                &#176;
-              </td>
-              <td style={{ backgroundColor: color(weatherWeek[5].main.temp_min) }}>
-                {weatherWeek[5].main.temp_min}
-                &#176;
-              </td>
+              {weatherWeek.map(temp => (
+                <td style={{ backgroundColor: color(temp.main.temp_min) }}>
+                  {temp.main.temp_min}
+                  &#176;
+                </td>
+              ))}
             </tr>
           </tbody>
         </table>
-      ) : null}
+      )}
     </div>
   )
 }

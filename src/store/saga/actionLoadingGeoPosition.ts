@@ -4,7 +4,7 @@ import {
   EActionsTypes,
   saveCoordsAction,
   errorCoordsAction,
-} from '../actions/actions';
+} from '../actions/actionGeoPosition';
 
 function* GeoPosition() {
   try {

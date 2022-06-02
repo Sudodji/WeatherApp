@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { EActionsTypes } from '../actions/actions';
+import { EActionsTypes } from '../actions/actionGeoPosition';
 import { IGeoPosition } from '../initialState';
 
 const initialState:IGeoPosition = {
@@ -19,7 +19,7 @@ const geoPositionReducer = (state = initialState, action:AnyAction) => {
       return {
         ...state, name: action.payload, loading: false, error: false,
       }
-    case EActionsTypes.ERROR_TEMP:
+    case EActionsTypes.ERROR_COORDS:
       return {
         ...state, loading: false, error: true,
       }
